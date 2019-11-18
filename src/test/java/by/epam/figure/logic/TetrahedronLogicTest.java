@@ -55,12 +55,12 @@ public class TetrahedronLogicTest {
     }
 
     @Test
-    public void IsTetrahedronBaseOnCoordinatePlaneTrue(){
+    public void isTetrahedronBaseOnCoordinatePlaneTrue(){
         Assert.assertFalse(tetrahedronLogic.isTetrahedronOnPlane(tetrahedron));
     }
 
     @Test
-    public void TetrahedronSplitByCoordinatePlaneTrue(){
+    public void tetrahedronSplitByCoordinatePlaneTrue(){
         double expected = 48 / (216.667 - 48);
         double actual=tetrahedronLogic.ratioOfPartsOfTetrahedron(tetrahedron);
         Assert.assertEquals(actual, expected, DELTA);
