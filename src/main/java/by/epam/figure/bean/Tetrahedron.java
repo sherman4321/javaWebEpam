@@ -3,6 +3,7 @@ package by.epam.figure.bean;
 import java.util.Objects;
 
 public class Tetrahedron {
+    private int id;
     private Point x1;
     private Point x2;
     private Point x3;
@@ -74,5 +75,13 @@ public class Tetrahedron {
 
     public void setX4(Point x4) {
         this.x4 = x4;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
