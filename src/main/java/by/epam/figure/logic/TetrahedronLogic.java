@@ -5,18 +5,18 @@ import by.epam.figure.bean.Tetrahedron;
 import by.epam.figure.bean.Vector3D;
 
 public class TetrahedronLogic {
-    public double square(Tetrahedron tetrahedron){
+    public double findSquare(Tetrahedron tetrahedron){
         Point x1 = tetrahedron.getX1();
         Point x2 = tetrahedron.getX2();
         Point x3 = tetrahedron.getX3();
         Point x4 = tetrahedron.getX4();
-        return squareOfFace(x1, x2, x3) +
-                squareOfFace(x2, x3, x4) +
-                squareOfFace(x3, x4, x1) +
-                squareOfFace(x4, x1, x2);
+        return findSquareOfFace(x1, x2, x3) +
+                findSquareOfFace(x2, x3, x4) +
+                findSquareOfFace(x3, x4, x1) +
+                findSquareOfFace(x4, x1, x2);
     }
 
-    private double squareOfFace(Point x1, Point x2, Point x3) {
+    private double findSquareOfFace(Point x1, Point x2, Point x3) {
         double AB = length(x1, x2);
         double AC = length(x1, x3);
         double CB = length(x3, x2);
@@ -24,7 +24,7 @@ public class TetrahedronLogic {
         return Math.sqrt(semiPerimeter * (semiPerimeter - AB) * (semiPerimeter - AC) * (semiPerimeter - CB));
     }
 
-    public double volume(Tetrahedron tetrahedron){
+    public double findVolume(Tetrahedron tetrahedron){
         Point r1 = tetrahedron.getX1();
         Point r2 = tetrahedron.getX2();
         Point r3 = tetrahedron.getX3();
@@ -58,14 +58,14 @@ public class TetrahedronLogic {
         return new Point(x, y, 0);
     }
 
-    public double ratioOfPartsOfTetrahedron(Tetrahedron tetrahedron) {
+    public double findRatioOfPartsOfTetrahedron(Tetrahedron tetrahedron) {
         Point r4 = tetrahedron.getX4();
         Point r1 = pointOfSplitByPlaneXY(r4, tetrahedron.getX1());
         Point r2 = pointOfSplitByPlaneXY(r4, tetrahedron.getX2());
         Point r3 = pointOfSplitByPlaneXY(r4, tetrahedron.getX3());
         Tetrahedron tetrahedron1 = new Tetrahedron(r1, r2, r3, r4);
-        double volume = volume(tetrahedron);
-        double volume1 = volume(tetrahedron1);
+        double volume = findVolume(tetrahedron);
+        double volume1 = findVolume(tetrahedron1);
         return (volume1)/(volume-volume1);
     }
 

@@ -1,22 +1,23 @@
 package by.epam.figure.repository;
 
 import by.epam.figure.bean.Tetrahedron;
-import by.epam.figure.bean.util.TetrahedronComparator;
-import by.epam.figure.logic.TetrahedronLogic;
+import by.epam.figure.bean.comparator.TetrahedronComparatorX1;
+import by.epam.figure.observer.TetrahedronRegister;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class TetrahedronRepository implements CrudRepository {
-    List<Tetrahedron> tetrahedronList;
+    private List<Tetrahedron> tetrahedronList;
+    private Map<Integer, TetrahedronRegister> registers;
 
     public TetrahedronRepository() {
         tetrahedronList = new ArrayList<>();
+        registers = new HashMap<>();
     }
 
-    public TetrahedronRepository(List<Tetrahedron> tetrahedronList) {
+    public TetrahedronRepository(List<Tetrahedron> tetrahedronList, Map<Integer, TetrahedronRegister> registers) {
         this.tetrahedronList = tetrahedronList;
+        this.registers = registers;
     }
 
     public List<Tetrahedron> getTetrahedronList() {
@@ -29,9 +30,9 @@ public class TetrahedronRepository implements CrudRepository {
 
     public List<Tetrahedron> readAllBySquare(double from, double to){
         List<Tetrahedron> tetrahedra = new ArrayList<>();
-        TetrahedronLogic logic = new TetrahedronLogic();
+        double square;
         for(Tetrahedron i: tetrahedronList){
-            double square = logic.square(i);
+            square = registers.get(i.getId()).getSquare();
             if(square >= from && square <= to){
                 tetrahedra.add(i);
             }
@@ -40,13 +41,15 @@ public class TetrahedronRepository implements CrudRepository {
     }
 
     public void sortByX(){
-        Collections.sort(tetrahedronList, new TetrahedronComparator());
+        Collections.sort(tetrahedronList, new TetrahedronComparatorX1());
     }
 
     @Override
     public boolean create(Tetrahedron tetrahedron) {
         if(tetrahedronList.add(tetrahedron)){
             tetrahedron.setId(tetrahedronList.indexOf(tetrahedron));
+            TetrahedronRegister tetrahedronRegister = new TetrahedronRegister(tetrahedron);
+            registers.put(tetrahedron.getId(), tetrahedronRegister);
             return true;
         }
         else{
@@ -55,7 +58,7 @@ public class TetrahedronRepository implements CrudRepository {
     }
 
     @Override
-    public Tetrahedron read(int id) {
+    public Tetrahedron readById(int id) {
         return tetrahedronList.get(id);
     }
 

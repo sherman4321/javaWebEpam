@@ -2,7 +2,7 @@ package by.epam.figure.logic;
 
 import by.epam.figure.bean.Point;
 import by.epam.figure.bean.Tetrahedron;
-import by.epam.figure.dao.TetrahedronParser;
+import by.epam.figure.util.TetrahedronParser;
 import by.epam.figure.dao.TetrahedronReader;
 import by.epam.figure.exception.DAOException;
 import org.junit.Assert;
@@ -38,7 +38,7 @@ public class TetrahedronLogicTest {
     @Test
     public void volumeTetrahedronTrue(){
         double expected = 216.667;
-        double actual = tetrahedronLogic.volume(tetrahedron);
+        double actual = tetrahedronLogic.findVolume(tetrahedron);
         Assert.assertEquals(expected, actual, DELTA);
     }
 
@@ -50,7 +50,7 @@ public class TetrahedronLogicTest {
     @Test
     public void squareTetrahedronTrue(){
         double expected = 104.62 + 50 + 130;
-        double actual=tetrahedronLogic.square(tetrahedron);
+        double actual=tetrahedronLogic.findSquare(tetrahedron);
         Assert.assertEquals(expected, actual, DELTA);
     }
 
@@ -62,7 +62,7 @@ public class TetrahedronLogicTest {
     @Test
     public void shouldSplitByCoordinatePlane(){
         double expected = 48 / (216.667 - 48);
-        double actual=tetrahedronLogic.ratioOfPartsOfTetrahedron(tetrahedron);
+        double actual=tetrahedronLogic.findRatioOfPartsOfTetrahedron(tetrahedron);
         Assert.assertEquals(actual, expected, DELTA);
     }
 }

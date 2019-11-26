@@ -5,15 +5,9 @@ import by.epam.figure.bean.Tetrahedron;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TetrahedronParameters implements Observable {
+public class TetrahedronParameters implements Observable<Observer> {
     private List<Observer> observers;
     private Tetrahedron tetrahedron;
-
-    private static TetrahedronParameters ourInstance = new TetrahedronParameters();
-
-    public static TetrahedronParameters getInstance() {
-        return ourInstance;
-    }
 
     private TetrahedronParameters() {
         observers = new ArrayList<>();
