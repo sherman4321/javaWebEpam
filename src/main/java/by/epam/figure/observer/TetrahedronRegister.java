@@ -23,6 +23,21 @@ public class TetrahedronRegister implements Observer<Tetrahedron> {
         square = tetrahedronLogic.findSquare(tetrahedron);
         volume = tetrahedronLogic.findVolume(tetrahedron);
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TetrahedronRegister register = (TetrahedronRegister) o;
+        return Double.compare(register.square, square) == 0 &&
+                Double.compare(register.volume, volume) == 0 &&
+                Objects.equals(tetrahedronLogic, register.tetrahedronLogic);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tetrahedronLogic, square, volume);
+    }
 
     public double getSquare() {
         return square;
