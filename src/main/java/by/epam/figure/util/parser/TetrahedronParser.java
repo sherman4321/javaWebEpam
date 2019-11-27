@@ -1,4 +1,4 @@
-package by.epam.figure.dao;
+package by.epam.figure.util.parser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

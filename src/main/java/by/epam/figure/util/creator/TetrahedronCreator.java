@@ -1,8 +1,10 @@
-package by.epam.figure.dao;
+package by.epam.figure.util.creator;
 
 import by.epam.figure.bean.Point;
 import by.epam.figure.bean.Tetrahedron;
+import by.epam.figure.util.filereader.TetrahedronReader;
 import by.epam.figure.exception.DAOException;
+import by.epam.figure.util.parser.TetrahedronParser;
 
 import java.io.File;
 import java.util.ArrayList;

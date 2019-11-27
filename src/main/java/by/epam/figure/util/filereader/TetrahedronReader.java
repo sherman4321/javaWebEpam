@@ -1,4 +1,4 @@
-package by.epam.figure.dao;
+package by.epam.figure.util.filereader;
 
 import by.epam.figure.exception.DAOException;
 import org.apache.logging.log4j.LogManager;
@@ -46,7 +46,7 @@ public class TetrahedronReader implements AutoCloseable{
 
     public void close() throws DAOException {
         try{
-        reader.close();
+            reader.close();
         }
         catch (IOException e){
             throw new DAOException(e);
