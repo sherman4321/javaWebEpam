@@ -1,7 +1,7 @@
 package by.epam.figure.observer;
 
-public interface Observable<Observer> {
-    void registerObserver(Observer observer);
-    void removeObserver(Observer observer);
+public interface Observable<E> {
+    void registerObserver(E observer);
+    void removeObserver(E observer);
     void notifyObserver();
 }

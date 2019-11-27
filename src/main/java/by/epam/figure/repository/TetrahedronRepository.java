@@ -1,12 +1,12 @@
 package by.epam.figure.repository;
 
 import by.epam.figure.bean.Tetrahedron;
-import by.epam.figure.bean.comparator.TetrahedronComparatorX1;
+import by.epam.figure.bean.comparator.TetrahedronFirstPointComparator;
 import by.epam.figure.observer.TetrahedronRegister;
 
 import java.util.*;
 
-public class TetrahedronRepository implements CrudRepository {
+public class TetrahedronRepository implements CrudRepository<Tetrahedron, Integer> {
     private List<Tetrahedron> tetrahedronList;
     private Map<Integer, TetrahedronRegister> registers;
 
@@ -20,8 +20,8 @@ public class TetrahedronRepository implements CrudRepository {
         this.registers = registers;
     }
 
-    public List<Tetrahedron> getTetrahedronList() {
-        return tetrahedronList;
+    public List<Tetrahedron> getAll() {
+        return new ArrayList<>(tetrahedronList);
     }
 
     public void setTetrahedronList(List<Tetrahedron> tetrahedronList) {
@@ -40,35 +40,25 @@ public class TetrahedronRepository implements CrudRepository {
         return tetrahedra;
     }
 
-    public void sortByX(){
-        Collections.sort(tetrahedronList, new TetrahedronComparatorX1());
+    public List<Tetrahedron> sortByFirstPoint(){
+        List<Tetrahedron> list = new ArrayList<>(tetrahedronList);
+        Collections.sort(list, new TetrahedronFirstPointComparator());
+        return list;
     }
 
     @Override
-    public boolean create(Tetrahedron tetrahedron) {
-        if(tetrahedronList.add(tetrahedron)){
-            tetrahedron.setId(tetrahedronList.indexOf(tetrahedron));
-            TetrahedronRegister tetrahedronRegister = new TetrahedronRegister(tetrahedron);
-            registers.put(tetrahedron.getId(), tetrahedronRegister);
-            return true;
-        }
-        else{
-            return false;
-        }
+    public void save(Integer id,Tetrahedron tetrahedron) {
+            Tetrahedron temp = new Tetrahedron(tetrahedron);
+            tetrahedronList.add(id, temp);
     }
 
     @Override
-    public Tetrahedron readById(int id) {
-        return tetrahedronList.get(id);
+    public Tetrahedron readById(Integer id) {
+        return new Tetrahedron(tetrahedronList.get(id));
     }
 
     @Override
-    public void update(int id, Tetrahedron tetrahedron) {
-        tetrahedronList.add(id, tetrahedron);
-    }
-
-    @Override
-    public Tetrahedron delete(int id) {
-        return tetrahedronList.remove(id);
+    public Tetrahedron delete(Integer id) {
+        return new Tetrahedron(tetrahedronList.remove((int)id));
     }
 }

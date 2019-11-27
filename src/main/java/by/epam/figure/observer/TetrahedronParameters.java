@@ -5,7 +5,7 @@ import by.epam.figure.bean.Tetrahedron;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TetrahedronParameters implements Observable<Observer> {
+public class TetrahedronParameters implements Observable<TetrahedronRegister> {
     private List<Observer> observers;
     private Tetrahedron tetrahedron;
 
@@ -14,12 +14,12 @@ public class TetrahedronParameters implements Observable<Observer> {
     }
 
     @Override
-    public void registerObserver(Observer observer) {
+    public void registerObserver(TetrahedronRegister observer) {
         observers.add(observer);
     }
 
     @Override
-    public void removeObserver(Observer observer) {
+    public void removeObserver(TetrahedronRegister observer) {
         observers.remove(observer);
     }
 
@@ -38,4 +38,5 @@ public class TetrahedronParameters implements Observable<Observer> {
         this.tetrahedron = tetrahedron;
         notifyObserver();
     }
+
 }

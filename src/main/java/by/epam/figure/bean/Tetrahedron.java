@@ -12,6 +12,14 @@ public class Tetrahedron {
     public Tetrahedron() {
     }
 
+    public Tetrahedron(Tetrahedron tetrahedron){
+        this.id = tetrahedron.id;
+        this.x1 = tetrahedron.x1;
+        this.x2 = tetrahedron.x2;
+        this.x3 = tetrahedron.x3;
+        this.x4 = tetrahedron.x4;
+    }
+
     public Tetrahedron(Point x1, Point x2, Point x3, Point x4) {
         this.x1 = x1;
         this.x2 = x2;

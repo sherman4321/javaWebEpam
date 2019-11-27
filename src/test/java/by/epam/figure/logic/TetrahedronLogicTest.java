@@ -2,8 +2,8 @@ package by.epam.figure.logic;
 
 import by.epam.figure.bean.Point;
 import by.epam.figure.bean.Tetrahedron;
-import by.epam.figure.util.TetrahedronParser;
-import by.epam.figure.dao.TetrahedronReader;
+import by.epam.figure.util.parser.TetrahedronParser;
+import by.epam.figure.util.filereader.TetrahedronReader;
 import by.epam.figure.exception.DAOException;
 import org.junit.Assert;
 import org.junit.BeforeClass;

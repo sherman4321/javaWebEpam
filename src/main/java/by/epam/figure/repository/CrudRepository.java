@@ -2,9 +2,11 @@ package by.epam.figure.repository;
 
 import by.epam.figure.bean.Tetrahedron;
 
-public interface CrudRepository {
-    boolean create(Tetrahedron tetrahedron);
-    Tetrahedron readById(int id);
-    void update(int id, Tetrahedron tetrahedron);
-    Tetrahedron delete(int id);
+import java.util.List;
+
+public interface CrudRepository<E, T> {
+    void save(T id, E e);
+    E readById(T id);
+    E delete(T id);
+    List<E> getAll();
 }
